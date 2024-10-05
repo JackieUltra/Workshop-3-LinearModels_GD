@@ -8,12 +8,11 @@ Before diving into the code, you need to set up your environment:
    git clone https://github.com/HarrySSH/LinearModels.git
    cd LinearModels
    ```
-2. Download the `regression_environment.yml` file from the repository.
-3. Create a Conda environment by running:
+2. Create a Conda environment by running:
    ```bash
    conda env create -f regression_environment.yml
    ```
-4. Activate the new environment:
+3. Activate the new environment:
    ```bash
    conda activate regression_env
    ```
