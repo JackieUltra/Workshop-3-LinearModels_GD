@@ -2,37 +2,43 @@ import numpy as np
 
 class LinearRegression:
     def __init__(self):
-        # Initialize the coefficients and intercept, which will be calculated after fitting the model
-        self.intercept = None
-        self.coefficients = None
+        # Initialize the coefficients and intercept with None
+        #  which will be calculated after fitting the model
+        #self.intercept = 
+        #self.coefficients = 
+
+        pass # after you have added the above lines, you can remove this line
 
     def fit(self, X, y):
         # Add a column of ones for the intercept (bias term)
-        ones = np.ones((len(X), 1))
-        X = np.concatenate((ones, X), axis=1)
 
-        # Calculate the Normal Equation
-        XT = X.T  # Transpose of X
-        XTX = XT.dot(X)  # X^T * X
-        XTX_inv = np.linalg.inv(XTX)  # Inverse of (X^T * X)
-        XTy = XT.dot(y)  # X^T * y
-        self.coefficients = XTX_inv.dot(XTy)  # Calculate the coefficients
+        # Transpose of X
+
+        # X^T * X
+
+        # Inverse of (X^T * X)
+        
+        # X^T * y
+        
+        # Calculate the coefficients using the Normal Equation
+        raise NotImplementedError("The fit method is not yet implemented")  # after you have added the above lines, you can remove this line
 
     def predict(self, X):
         # Add a column of ones to match the structure used in fitting the model
-        ones = np.ones((len(X), 1))
-        X = np.concatenate((ones, X), axis=1)
-        
+
         # Use the calculated coefficients to make predictions
-        return X.dot(self.coefficients)
+
+        raise NotImplementedError("The predict method is not yet implemented") # after you have added the above lines, you can remove this line
 
     def Rsquared(self, X, y):
-        # Calculate R-squared to evaluate model performance
-        ypred = self.predict(X)
-        ss_total = np.sum((y - np.mean(y))**2)  # Total sum of squares
-        ss_residual = np.sum((y - ypred)**2)  # Residual sum of squares
-        return 1 - (ss_residual / ss_total)  # R-squared formula
+        # Predict y values using the predict method
+        # Total sum of squares
 
+        # Residual sum of squares
+
+        # R-squared formula
+
+        raise NotImplementedError("The Rsquared method is not yet implemented") # after you have added the above lines, you can remove this line
 
 if __name__ == "__main__":
     # Sample data
