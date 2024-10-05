@@ -63,8 +63,11 @@ To complete this exercise, follow these steps:
 5. Test each method as you implement them to ensure correctness.
 
 ## Testing Your Implementation
-Once you have implemented the methods, test your class using a simple dataset:
-- `X` = np.array([[1], [2], [3], [4], [5]])
-- `y` = np.array([1, 2, 3, 4, 5])
+Once you have implemented the methods, you can test your class using pytest. Run the following command in your terminal:
+```bash
+pytest
+```
+This command will execute the test cases defined in the pytest test suite. Ensure that your functions are correctly implemented by passing all the tests.
 
-Create an instance of `LinearRegression`, fit the model, make predictions, and calculate the R-squared value. Compare your results with expected outputs or use a statistical software to verify the correctness.
+Further Reading for unit testing.
+[text](https://docs.pytest.org/en/stable/)

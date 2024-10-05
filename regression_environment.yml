@@ -1,3 +1,4 @@
+
 name: regression_env
 channels:
   - defaults
@@ -7,3 +8,4 @@ dependencies:
   - matplotlib
   - scikit-learn
   - pip
+  - pytest  # Added pytest to the environment
