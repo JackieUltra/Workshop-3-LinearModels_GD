@@ -1,5 +1,25 @@
 # Implementing the LinearRegression Class
 
+## Getting Started
+Before diving into the code, you need to set up your environment:
+
+1. Clone the repository where this project is hosted:
+   ```bash
+   git clone https://github.com/HarrySSH/LinearModels.git
+   cd LinearModels
+   ```
+2. Download the `regression_environment.yml` file from the repository.
+3. Create a Conda environment by running:
+   ```bash
+   conda env create -f regression_environment.yml
+   ```
+4. Activate the new environment:
+   ```bash
+   conda activate regression_env
+   ```
+
+
+
 ## Overview
 Welcome to your task of completing the implementation of a `LinearRegression` class using Python and NumPy. The goal of this exercise is to deepen your understanding of the linear regression algorithm by manually coding the methods used to fit the model to the data, make predictions, and evaluate the model's performance.
 
