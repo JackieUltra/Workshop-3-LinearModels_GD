@@ -1,73 +1,51 @@
-# Implementing the LinearRegression Class
+# Linear Models Homework Assignment
+
+This project involves implementing and training linear regression models using gradient descent and stochastic gradient descent (SGD). You will start by completing the provided Python script and then run corresponding sections of the Jupyter notebook to validate your work.
 
 ## Getting Started
 Before diving into the code, you need to set up your environment:
 
 1. Clone the repository where this project is hosted:
    ```bash
-   git clone https://github.com/HarrySSH/LinearModels.git
-   cd LinearModels
+   git clone github_repo
+   cd LinearModels_GD
    ```
 2. Create a Conda environment by running:
    ```bash
-   conda env create -f regression_environment.yml
+   conda env create -f lm_env.yaml
    ```
 3. Activate the new environment:
    ```bash
-   conda activate regression_env
+   conda activate lm_env
    ```
 
+## Workshop Instructions
+
+### Step 1: Implement the `train` Method
+
+- Start by completing the `train` method in the Python script (`LinearModels.py`). The `train` method uses standard gradient descent to minimize the error between predicted and actual values.
+- Refer to the comments and pseudocode provided in the script to guide your implementation.
+
+After completing the `train` method:
+
+1. Open the Jupyter notebook `LM_playground.ipynb`.
+2. Run sections 1.1 to 1.3 to validate your implementation.
+   - These sections involve training the linear model using your implementation and play with the learning rate. 
+
+### Step 2: Implement the `train_SGD` Method
+
+- Once you have successfully implemented and tested the `train` method, proceed to implement the `train_SGD` method. This method uses Stochastic Gradient Descent (SGD) to train the linear model.
+- As before, the script includes comments and pseudocode to guide your work.
+
+After completing the `train_SGD` method:
+
+1. Open the Jupyter notebook `LM_playground.ipynb`.
+2. Run sections 2.1 to 2.3 to validate your implementation.
+   - These sections will train the linear model using your SGD implementation and try to answer the question in the jupyter notebook.
+
+## Notes
+- Make sure to log the error and iteration details during training for both methods. This will help you observe the convergence behavior of the algorithms.
+- The Jupyter notebook is structured to guide you through both implementations, including visualizations of the model's learning process.
 
 
-## Overview
-Welcome to your task of completing the implementation of a `LinearRegression` class using Python and NumPy. The goal of this exercise is to deepen your understanding of the linear regression algorithm by manually coding the methods used to fit the model to the data, make predictions, and evaluate the model's performance.
 
-## Method Descriptions
-
-### 1. `__init__`
-**Purpose**: Initializes the LinearRegression instance.
-**Tasks**:
-  - Initialize `self.coefficients` to `None`. This will later hold the coefficients (weights) calculated from the fit method.
-  - Initialize `self.intercept` to `None`, which will store the intercept from the regression model.
-
-### 2. `fit`
-**Purpose**: Fits the linear regression model to the provided data.
-**Tasks**:
-  - Add a column of ones to the input feature matrix `X` to account for the intercept in the linear model.
-  - Compute the transpose of matrix `X`.
-  - Calculate the product of the transpose of `X` and `X` itself.
-  - Compute the inverse of this product.
-  - Calculate the product of the transpose of `X` and the target vector `y`.
-  - Solve for the coefficient vector using the Normal Equation (`XTX_inv * XTy`). This vector includes the intercept as its first element.
-
-### 3. `predict`
-**Purpose**: Makes predictions using the linear model.
-**Tasks**:
-  - Add a column of ones to the input feature matrix `X` if it was not included during fitting.
-  - Compute the dot product of the feature matrix `X` and the coefficients (including intercept) to predict the target variable.
-
-### 4. `Rsquared`
-**Purpose**: Calculates the R-squared value to evaluate the model performance.
-**Tasks**:
-  - Use the `predict` method to obtain predictions for the input feature matrix `X`.
-  - Calculate the total sum of squares (variation of `y` from its mean).
-  - Calculate the residual sum of squares (variation of `y` from the predicted values).
-  - Compute the R-squared value using the formula `1 - (residual sum of squares / total sum of squares)`.
-
-## Completion Guide
-To complete this exercise, follow these steps:
-1. Read and understand the purpose of each method and what it is supposed to accomplish.
-2. Start by implementing the `fit` method as it will compute the necessary coefficients used by other methods.
-3. Implement the `predict` method to make use of the coefficients computed in `fit`.
-4. Implement the `Rsquared` method to evaluate the model's performance using the predictions.
-5. Test each method as you implement them to ensure correctness.
-
-## Testing Your Implementation
-Once you have implemented the methods, you can test your class using pytest. Run the following command in your terminal:
-```bash
-pytest
-```
-This command will execute the test cases defined in the pytest test suite. Ensure that your functions are correctly implemented by passing all the tests.
-
-Further Reading for unit testing.
-[text](https://docs.pytest.org/en/stable/)

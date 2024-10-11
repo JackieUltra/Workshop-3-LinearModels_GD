@@ -8,4 +8,6 @@ dependencies:
   - matplotlib
   - scikit-learn
   - pip
-  - pytest  # Added pytest to the environment
+  - pandas
+  - jupyter
+  - tqdm
