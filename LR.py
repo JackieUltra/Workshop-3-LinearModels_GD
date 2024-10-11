@@ -36,7 +36,7 @@ class LinearModels:
         This method should be implemented by students as part of the homework assignment.
         """
         # Add a column of ones for the intercept (bias term)
-        # Pseudo Code: X = np.concatenate([X, np.ones((X.shape[0], 1))], axis=1)
+        # Code: X = np.concatenate([X, np.ones((X.shape[0], 1))], axis=1)
         
         # Initialize coefficients with zeros
         # Code: self.coefficients = np.zeros(X.shape[1])
@@ -82,7 +82,7 @@ class LinearModels:
             #        self.log['early_stop'] = 'Yes'
             #        break
 
-        raise NotImplementedError("Gradient Descent training method needs to be implemented by students.")
+        raise NotImplementedError("Error: Gradient Descent training method needs to be implemented by students.")
 
     def train_SGD(self, X, y, early_stop=False, batch_size=1):
         """
@@ -106,7 +106,7 @@ class LinearModels:
         #     Check for early stopping if enabled
         
 
-        raise NotImplementedError("Stochastic Gradient Descent training method needs to be implemented by students.")
+        raise NotImplementedError("Error: Stochastic Gradient Descent training method needs to be implemented by students.")
 
     def predict(self, X):
         # Add a column of ones to match the structure used in fitting the model
@@ -145,9 +145,10 @@ if __name__ == "__main__":
     # Training is not implemented, as it is assigned for students to complete.
     try:
         model_1.train(X_train, y_train, early_stop=True)
+        print("Successfully implemented the training method for Gradient Descent.")
     except NotImplementedError as e:
         print(e)
-    print("Successfully implemented the training method for Gradient Descent.")
+    
     '''
     try:
         model_1.train_SGD(X_train, y_train, early_stop=True, batch_size=32)
