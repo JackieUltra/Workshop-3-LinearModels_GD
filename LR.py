@@ -14,6 +14,7 @@ class LinearModels:
         self.log = {'learning_rate': self.learning_rate, 'iterations': [], 'error': [], 'early_stop': 'No'}
 
     def fit(self, X, y):
+        raise NotImplementedError("We do not need to implement the fit method for this assignment.")
         # Add a column of ones for the intercept (bias term)
         X = np.concatenate([X, np.ones((X.shape[0], 1))], axis=1)
 
@@ -116,6 +117,7 @@ class LinearModels:
         return y_pred
 
     def Rsquared(self, X, y):
+        raise NotImplementedError("We do not need to implement the Rsquared method for this assignment.")
         # Predict y values using the predict method
         y_pred = self.predict(X)
         # Calculate the total sum of squares (TSS)
