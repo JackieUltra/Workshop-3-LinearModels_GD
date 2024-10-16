@@ -36,77 +36,79 @@ class LinearModels:
         This method should be implemented by students as part of the homework assignment.
         """
         # Add a column of ones for the intercept (bias term)
-        # Code: X = np.concatenate([X, np.ones((X.shape[0], 1))], axis=1)
+        X = np.concatenate([X, np.ones((X.shape[0], 1))], axis=1)
         
         # Initialize coefficients with zeros
-        # Code: self.coefficients = np.zeros(X.shape[1])
+        self.coefficients = np.zeros(X.shape[1])
         
-        # Iterate through the number of iterations (self.n_iterations)
-        # Pseudo Code: for i in range(self.n_iterations):
-        #     Calculate predictions
-        #     Calculate the error
-        #     Calculate Mean Squared Error (MSE)
-        #     Calculate the gradient of the error
-        #     Update coefficients using the learning rate
-        #     Log iteration and error
-        #     Check for early stopping
-        
-        ######### You should not have to look at the code below this line#########
-        ######### This is a line by line explanation of the code above #########
-        ######### For line where I say UNCOMMENT THIS LINE, you should write code there and uncomment that line #########
         # Gradient Descent
-        # UNCOMMENT THIS LINE: You need a for loop to iterate through the number of iterations
-
-            # Calculate predictions: X * coefficients
-            # UNCOMMENT THIS LINE: You should use np.dot to calculate the predictions
-
-            # Calculate the error between predictions and actual values
-            # UNCOMMENT THIS LINE: You should subtract the actual values from the predictions
-
-            # Calculate Mean Squared Error (MSE)
-            # UNCOMMENT THIS LINE: You should calculate the mean of the squared errors, just do the mean of the square of the errors
-
-            # Calculate the gradient of the error with respect to coefficients
-            # UNCOMMENT THIS LINE: You should calculate the gradient using the formula: grads= 2 * np.dot(X.T, errors) / len(X)
-            
-            # Update coefficients using the gradient and learning rate
-            # UNCOMMENT THIS LINE: You should update the coefficients by subtracting the product of the learning rate and the gradient from the coefficients
-            
-            # Log the iteration number and error for tracking
-            # UNCOMMENT THIS LINE: You should log the iteration number and error in the log dictionary with append method
-            
-            # Check for early stopping if enabled
-            #if early_stop and i > 0:
-            #    # Stop if the change in error is below the specified tolerance
-            #    if abs(self.log['error'][-2] - mse) < self.tolerance:
-            #        self.log['early_stop'] = 'Yes'
-            #        break
-
-        raise NotImplementedError("Error: Gradient Descent training method needs to be implemented by students.")
-
-    def train_SGD(self, X, y, early_stop=False, batch_size=1):
-        """
-        Train the linear model using Stochastic Gradient Descent.
-        This method should be implemented by students as part of the homework assignment.
-        """
-        # Add a column of ones for the intercept (bias term)
-        # Pseudo Code: X = np.concatenate([X, np.ones((X.shape[0], 1))], axis=1)
-        
-        # Initialize coefficients with zeros
-        # Code: self.coefficients = np.zeros(X.shape[1])
-        
-        # Iterate through the number of iterations (self.n_iterations)
-        # Pseudo Code: for i in range(self.n_iterations):
-        #     Shuffle the dataset
-        #     Iterate over batches
-        #     For each batch, calculate predictions and error
-        #     Calculate the gradient for the batch
-        #     Update coefficients using the gradient and learning rate
+        for i in range(self.n_iterations):
+        #     Calculate predictions
+            predictions = np.dot(X, self.coefficients)
+        #     Calculate the error
+            errors = predictions - y
+        #     Calculate Mean Squared Error (MSE)
+            mse  = np.mean(errors**2)
+        #     Calculate the gradient of the error
+            gradients = 2 * np.dot(X.T,errors) / len(X)
+        #     Update coefficients using the learning rate
+            self.coefficients -= self.learning_rate * gradients
         #     Log iteration and error
-        #     Check for early stopping if enabled
+            self.log['iterations'].append(i)
+            self.log['error'].append(mse)
+        #     Check for early stopping
+            if early_stop and i > 0:
+                # Stop if the change in error is below the specified tolerance
+                if abs(self.log['error'][-2] - mse) < self.tolerance:
+                    self.log['early_stop'] = 'Yes'
+                    break
         
+    def train_SGD(self, X, y, early_stop=False, batch_size=1):
+        # Add a column of ones for the intercept (bias term)
+        X = np.concatenate([X, np.ones((X.shape[0], 1))], axis=1)
 
-        raise NotImplementedError("Error: Stochastic Gradient Descent training method needs to be implemented by students.")
+        # Initialize coefficients with zeros
+        self.coefficients = np.zeros(X.shape[1])
+
+        # Stochastic Gradient Descent
+        for i in tqdm(range(self.n_iterations)):
+            # Shuffle data for mini-batch SGD
+            indices = np.arange(X.shape[0])
+            np.random.shuffle(indices)
+            X = X[indices]
+            y = y[indices]
+
+            # Iterate over batches
+            for j in range(0, X.shape[0], batch_size):
+                # Select a batch of data
+                X_batch = X[j:j + batch_size]
+                y_batch = y[j:j + batch_size]
+                
+                # Calculate predictions for the batch
+                predictions = np.dot(X_batch, self.coefficients)
+                # Calculate the error for the batch
+                errors = predictions - y_batch
+                # Calculate the gradient for the batch
+                gradients = 2 * np.dot(X_batch.T, errors) / len(X_batch)
+
+                # Update coefficients using the gradient and learning rate
+                self.coefficients -= self.learning_rate * gradients
+
+            # Calculate the mean squared error on the whole dataset
+            predictions = np.dot(X, self.coefficients)
+            mse = np.mean((predictions - y) ** 2)
+
+            # Log the iteration number and error for tracking
+            self.log['iterations'].append(i)
+            self.log['error'].append(mse)
+
+            # Check for early stopping if enabled
+            if early_stop and i > 0:
+                # Stop if the change in error is below the specified tolerance
+                if abs(self.log['error'][-2] - mse) < self.tolerance:
+                    self.log['early_stop'] = 'Yes'
+                    break
+
 
     def predict(self, X):
         # Add a column of ones to match the structure used in fitting the model
